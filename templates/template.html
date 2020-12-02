@@ -13,16 +13,16 @@
 
 <body>
  <div class="login">
-	<h1>Predict Credit Risk</h1>
+	  <h1>Predict Credit Risk</h1>
 
      <!-- Form to enter new data for predictions  -->
     <form action="{{ url_for('predict')}}"method="POST">
       <input type="text" name="Age" placeholder="Age" required="required" /><br>
-    	<input type="text" name="Credit Amount" placeholder="Credit Amount" required="required" /><br>
-        <input type="text" name="Duration" placeholder="Duration" required="required" /><br>
+      <input type="text" name="Credit Amount" placeholder="Credit Amount" required="required" /><br>
+      <input type="text" name="Duration" placeholder="Duration" required="required" /><br>
 
 
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+      <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
     </form>
 
    <br>
@@ -34,3 +34,5 @@
 
 </body>
 </html>
+
+

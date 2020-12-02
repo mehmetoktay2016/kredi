@@ -13,8 +13,8 @@ from sklearn.metrics import accuracy_score
 
 
 
-#df = pd.read_csv("data/credit_risk.csv", index_col = 0)
-df = pd.read_csv("/Users/user/PycharmProjects/pythonProject5/12_hafta/kredi_riski/data/credit_risk.csv", index_col = 0)
+df = pd.read_csv("data/credit_risk.csv", index_col = 0)
+#df = pd.read_csv("/Users/user/PycharmProjects/pythonProject5/12_hafta/kredi_riski/data/credit_risk.csv", index_col = 0)
 
 df = df.drop(["Sex","Job","Housing","Saving accounts","Checking account","Purpose"] , axis = 1)
 df.loc[df.Risk == "good" , "Risk"] = 1

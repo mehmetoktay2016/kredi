@@ -1,45 +1,26 @@
-import numpy as np
-import pandas as pd
-from flask import Flask, request, render_template, jsonify
-import pickle  # python nesnelerini kaydetmek ve cagirmak icin kullanilir.
 from flask import Flask,request, url_for, redirect, render_template, jsonify
 from pycaret.regression import *
 import pandas as pd
 import pickle
 import numpy as np
 
+app = Flask(__name__)
 
-from pycaret.anomaly import predict_model
+model = load_model('lrrr_model')
+cols = ['Age', 'Credit amount', 'Duration']
 
-import numpy as np
-from flask import Flask, request, render_template
-import pickle  # python nesnelerini kaydetmek ve cagirmak icin kullanilir.
-
-app = Flask(__name__)  # flask uygulamasını initialize eder. baslatir.
-model = pickle.load(open('lrrr_model.pkl', 'rb'))  # kayitli modeli cagirma
-
-
-# flask root (kök dizin) için anasayfanın tanımlanması
 @app.route('/')
 def home():
-    return render_template('template.html')  # anasayfa icin hazirlanmis olan template belirtilir.
+    return render_template("template.html")
 
-
-# yukaridaki bolum sonrasi template.html icindeki hareketleri okumaliyiz.
-
-@app.route('/predict', methods=['POST'])
+@app.route('/predict',methods=['POST'])
 def predict():
-    # Arayüzdeki text'lere girilen değerleri alıp hesaplama sonrası tekrar arayüze göndereceğiz.
-    int_features = [int(x) for x in request.form.values()]
-    final_features = [np.array(int_features)]
-    prediction = model.predict(final_features)
-
-    predicted_y = int(np.round(prediction, 2))
-
-    # html çıktısına geri gondermek
-    return render_template('template.html', prediction_text='Predicted Credit Risk: {}'.format(predicted_y))
-
-
+    int_features = [x for x in request.form.values()]
+    final = np.array(int_features)
+    data_unseen = pd.DataFrame([final], columns = cols)
+    prediction = predict_model(model, data=data_unseen, round = 0)
+    prediction = int(prediction.Label[0])
+    return render_template('template.html',pred='Expected Bill will be {}'.format(prediction))
 
 @app.route('/predict_api',methods=['POST'])
 def predict_api():

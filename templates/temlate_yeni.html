@@ -1,44 +1,36 @@
-<!-- Card -->
-<div class="card">
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Predict Credit Risk</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='./style.css') }}">
 
-  <!-- Card body -->
-  <div class="card-body">
+</head>
 
-    <!-- Material form register -->
-    <form>
-      <p class="h4 text-center py-4">Sign up</p>
+<body>
+ <div class="login">
+	<h1>Predict Credit Risk</h1>
 
-      <!-- Material input text -->
-      <div class="md-form">
-        <i class="fa fa-user prefix grey-text"></i>
-        <input type="text" id="materialFormCardNameEx" class="form-control">
-        <label for="materialFormCardNameEx" class="font-weight-light">Age</label>
-      </div>
-
-      <!-- Material input email -->
-      <div class="md-form">
-        <i class="fa fa-envelope prefix grey-text"></i>
-        <input type="email" id="materialFormCardEmailEx" class="form-control">
-        <label for="materialFormCardEmailEx" class="font-weight-light">Credit Amount</label>
-      </div>
-
-      <!-- Material input email -->
-      <div class="md-form">
-        <i class="fa fa-exclamation-triangle prefix grey-text"></i>
-        <input type="email" id="materialFormCardConfirmEx" class="form-control">
-        <label for="materialFormCardConfirmEx" class="font-weight-light">Duration</label>
-      </div>
+     <!-- Form to enter new data for predictions  -->
+    <form action="{{ url_for('predict')}}"method="POST">
+      <input type="text" name="Age" placeholder="Age" required="required" /><br>
+    	<input type="text" name="Credit Amount" placeholder="Credit Amount" required="required" /><br>
+        <input type="text" name="Duration" placeholder="Duration" required="required" /><br>
 
 
-
-      <div class="text-center py-4 mt-3">
-        <button class="btn btn-cyan" type="submit">Predict</button>
-      </div>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
     </form>
-    <!-- Material form register -->
 
-  </div>
-  <!-- Card body -->
+   <br>
+   <br>
 
-</div>
-<!-- Card -->
+
+ </div>
+ {{pred}}
+
+</body>
+</html>

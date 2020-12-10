@@ -17,11 +17,14 @@
 
      <!-- Form to enter new data for predictions  -->
     <form action="{{ url_for('predict')}}"method="POST">
-      <input type="text" name="Age" placeholder="Age" required="required" /><br>
-      <input type="text" name="Credit Amount" placeholder="Credit Amount" required="required" /><br>
-      <input type="text" name="Duration" placeholder="Duration" required="required" /><br>
-
-
+      <input type="text" name="CreditScore" placeholder="CreditScore(Kredi skoru)" required="required" /><br>
+      <input type="text" name="Gender" placeholder="Gender(kadın : 1 , erkek : 0)" required="required" /><br>
+      <input type="text" name="Age" placeholder="Age(Yaş)" required="required" /><br>
+      <input type="text" name="Tenure" placeholder="Tenure( Kaç yıllık müşteri)" required="required" /><br>
+      <input type="text" name="Balance" placeholder="Balance(Bakiye)" required="required" /><br>
+      <input type="text" name="HasCrCard" placeholder="HasCrCard(Kredi kartı durumu (No : 0 ,Yes : 1))" required="required" /><br>
+      <input type="text" name="IsActiveMember" placeholder="IsActiveMember(Aktif üyelik durumu (No : 0 ,Yes : 1) )" required="required" /><br>
+      <input type="text" name="EstimatedSalary" placeholder="EstimatedSalary(Tahmini maaş)" required="required" /><br>
       <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
     </form>
 

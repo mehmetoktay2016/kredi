@@ -13,19 +13,24 @@ from sklearn.metrics import accuracy_score
 
 
 
-df = pd.read_csv("data/credit_risk.csv", index_col = 0)
-#df = pd.read_csv("/Users/user/PycharmProjects/pythonProject5/12_hafta/kredi_riski/data/credit_risk.csv", index_col = 0)
+df = pd.read_csv("data/churn.csv", index_col = 0)
+#df = pd.read_csv("/Users/user/PycharmProjects/pythonProject5/12_hafta/kredi/churn_deployment/data/churn.csv", index_col = 0)
+pd.pandas.set_option("display.max_columns", None)
+df.head()
+df = df.drop(["CustomerId","Surname","Geography","NumOfProducts"] , axis = 1)
 
-df = df.drop(["Sex","Job","Housing","Saving accounts","Checking account","Purpose"] , axis = 1)
-df.loc[df.Risk == "good" , "Risk"] = 1
-df.loc[df.Risk == "bad" , "Risk"] = 0
-df.Risk = df.Risk.astype("category")
+df.loc[df.Gender == "Female" , "Gender"] = 1
+df.loc[df.Gender == "Male" , "Gender"] = 0
+df.Gender = df.HasCrCard.astype("int")
 
 df.head()
 
 
-X = df.drop("Risk", axis=1)
-y = df[["Risk"]]
+
+
+
+X = df.drop("Exited", axis=1)
+y = df[["Exited"]]
 
 
 
@@ -37,7 +42,7 @@ lr.fit(X, y)
 y_pred = lr.predict(X)
 
 
-pickle.dump(lr, open('lrrr_model.pkl','wb'))
+pickle.dump(lr, open('lrrs_model.pkl','wb'))
 
 print("Model Kaydedildi")
 
